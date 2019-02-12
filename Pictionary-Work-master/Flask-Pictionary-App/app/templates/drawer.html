@@ -5,6 +5,11 @@
 			* {
 				box-sizing: border-box;
 			}
+			img.avatar {
+				width: 50%;
+				height: 15%;
+				border-radius: 20%;
+			}
 			button {
 				background-color: teal;
 				color: white;
@@ -46,7 +51,7 @@
 				border-color: teal;
 				border-radius: 2px;
 				padding-top: 15px;
-				background-color:lightgray;
+				background-color:white;
 			}
 			.canvas_css:hover{
 				cursor:crosshair;
@@ -105,7 +110,6 @@
 				});
 			}
 		</script>
-	</head>
 
 	<script type="text/javascript">
 
@@ -162,10 +166,10 @@
 					x = "black";
 					break;
 				case "white":
-					x = "lightgrey";
+					x = "white";
 					break;
 			}
-			if (x == "lightgrey") y = 14;
+			if (x == "white") y = 14;
 			else y = 2;
 		
 		}
@@ -234,7 +238,7 @@
 					ctx.closePath();
 					dot_flag = false;
 					temp = [e.clientX - canvas.offsetLeft , e.clientY - canvas.offsetTop];
-					if(x=="lightgrey")
+					if(x=="white")
 					{
 						eraser_co_ords.push(temp);
 					}
@@ -255,7 +259,7 @@
 					currY = e.clientY - canvas.offsetTop;
 					draw();
 					temp = [e.clientX - canvas.offsetLeft , e.clientY - canvas.offsetTop];
-					if(x=="lightgrey")
+					if(x=="white")
 					{
 						eraser_co_ords.push(temp);
 					}
@@ -281,50 +285,55 @@
 		}
 		
 		</script>
-
+		</head>
 	<body onload="init()">
 		<script>
 		setInterval(function(){foo()},1000);
 		</script>
 		<div class="w3-container w3-teal row">
-		<h1 style="text-align:center;">Room ID:{{ room }} Role: {{role}}</h1>
-		<h1 style="text-align:center;">Word: {{word}}</h1>
-		</div><br><br><br><br>
+		<div class="col-2" style="text-align:center;">
+			<img src="/static/get_myavatar" class="avatar" >
+			<h3 >{{name}}</h3>
+		</div>
+		<div class = "col-8">
+				<h1 style="text-align:center;">PICTIONARY-APP</h1>
+			<h1 style="text-align:center;">Room ID:{{ room }} Role: {{role}}</h1>
+			<h1 style="text-align:center;">Word: {{word}}</h1>
+		</div>
+		<div class="col-2"></div>
+		</div>
+		<br><br><br><br>
 		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-			<canvas id="can" width="1200" height="400" class="canvas_css"></canvas></div>
-			<div class = "col-2">
-				</br>
-				</br>
-				</br>
+			<div class = "col-2" style="text-align:center;">
+				<br><br><br>
 				<!-- <div style="position:absolute;top:20%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div> -->
 				<!-- <div style="position:absolute;top:20%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div> -->
 				<!-- <div style="position:absolute;top:20%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div> -->
 				<!-- <div style="position:absolute;top:22%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div> -->
 				<!-- <div style="position:absolute;top:22%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div> --> 
 				<!-- <div style="width:15px;height:15px;background:black;" id="black" onclick="color(this)"></div>
-				 -->
-				 <img src="https://img.icons8.com/dusk/48/000000/marker-pen.png" id="black" onclick="color(this)" alt="pen">
-				<br />
-				<br />
+				-->
+				<img src="https://img.icons8.com/dusk/48/000000/marker-pen.png" id="black" onclick="color(this)" alt="pen">
+				<br><br>
 				<!-- <div >Eraser</div> -->
 				<!-- <div style="width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div> -->
 				<img src="https://i.ibb.co/cF7rmYz/eraser-48-289599.png" alt="eraser" border="0" id="white" onclick="color(this)">
 			</div>
+			<div class="col-6" style="text-align:center;">
+				<canvas id="can" width="800" height="600" class="canvas_css"></canvas>
+				<br>
+				<div style="padding-top: 10px;">
+						<button onclick="leave_room();" >Leave this room</button>
+					</div>
+			</div>
+			<div class="col-4">
+				<textarea id="chat" cols="56" rows="28" style="color:teal;" readonly></textarea>
+			</div>
 		</div>
-		</br></br></br>
+		<br><br><br>
 			<!-- </div> -->
 			<!-- <img id="canvasimg" style="position:absolute;top:15%;left:52%;" style="display:none;"> -->
 			<!-- <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:62%;left:22%;"> -->
-			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-8"><textarea id="chat" cols="100" rows="10" style="color:teal"readonly></textarea></div>
-				<div class="col-2"></div>
-			</div>
-			<div style="text-align: center">
-				<button onclick="leave_room();" >Leave this room</a>
-			</div>
 		</body>
 </html>
 
@@ -345,3 +354,7 @@
 <!-- <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:62%;left:22%;"> -->
 <!-- <div style="position:absolute;top:65%;left:10%;"><textarea id="chat" cols="200" rows="15"></textarea><br><br> -->
 <!-- <a href="#" onclick="leave_room();" >Leave this room</a></div> -->
+
+
+
+

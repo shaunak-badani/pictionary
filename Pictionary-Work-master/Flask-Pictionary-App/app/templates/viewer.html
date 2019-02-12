@@ -1,56 +1,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><style>
-            body {font-family: Arial, Helvetica, sans-serif;}
-            * {
-              box-sizing: border-box;
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+          body {font-family: Arial, Helvetica, sans-serif;}
+          *{
+            box-sizing: border-box;
+          }
+          button {
+            background-color: teal;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 2ex;
+          }
+    
+          button:hover {
+            opacity: 0.8;
+          }
+    
+          .col-1 {width: 8.33%;}
+          .col-2 {width: 16.66%;}
+          .col-3 {width: 25%;}
+          .col-4 {width: 33.33%;}
+          .col-5 {width: 41.66%;}
+          .col-6 {width: 50%;}
+          .col-7 {width: 58.33%;}
+          .col-8 {width: 66.66%;}
+          .col-9 {width: 75%;}
+          .col-10 {width: 83.33%;}
+          .col-11 {width: 91.66%;}
+          .col-12 {width: 100%;}
+          
+          [class*="col-"] {
+            float: left;
+            padding: 15px;
+            border-radius: 15px;
             }
-            button {
-              background-color: teal;
-              color: white;
-              padding: 14px 20px;
-              margin: 8px 0;
-              border: none;
-              cursor: pointer;
-              border-radius: 2ex;
-            }
-      
-            button:hover {
-              opacity: 0.8;
-            }
-      
-            .col-1 {width: 8.33%;}
-            .col-2 {width: 16.66%;}
-            .col-3 {width: 25%;}
-            .col-4 {width: 33.33%;}
-            .col-5 {width: 41.66%;}
-            .col-6 {width: 50%;}
-            .col-7 {width: 58.33%;}
-            .col-8 {width: 66.66%;}
-            .col-9 {width: 75%;}
-            .col-10 {width: 83.33%;}
-            .col-11 {width: 91.66%;}
-            .col-12 {width: 100%;}
-            [class*="col-"] {
-              float: left;
-              padding: 15px;
-              border-radius: 15px;
-              }
-            .row::after {
-              content: "";
-              clear: both;
-              display: table;
-            }
-            .canvas_css{
-              border-style: solid;
-              border-color: teal;
-              border-radius: 2px;
-              padding-top: 15px;
-              background-color:lightgray;
-            }
-            .canvas_css:hover{
-              cursor:crosshair;
-            }
+          .row::after {
+            content: "";
+            clear: both;
+            display: table;
+          }
+          .canvas_css{
+            border-style: solid;
+            border-color: teal;
+            border-radius: 2px;
+            padding-top: 15px;
+            background-color:white;
+          }
+          .canvas_css:hover{
+            cursor:crosshair;
+          }
           </style>
         <title>Pictionary-Chat: {{ room }}</title>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
@@ -94,105 +96,19 @@
             }
         </script>
         <style>
-             {box-sizing: border-box;}
-             .fa {
-  font-size: 40px;
-  cursor: pointer;
-  user-select: none;
-  color:#66ccff;
-  padding: 16px 20px;
-  border: none;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 76px;
-  right: 0px;
-}
-
-.fa:hover {
-  color:#66ccff;
-}
-
-/* Button used to open the chat form - fixed at the bottom of the page */
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 180px;
-}
-.leave-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 238px;
-  width: 180px;
-}
-
-/* The popup chat - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
-}
-
-/* Full-width textarea */
-.form-container textarea {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  resize: none;
-  min-height: 200px;
-}
-
-/* When the textarea gets focus, do something */
-.form-container textarea:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-} 
+          *{box-sizing: border-box;}
+          .fa {
+            font-size: 40px;
+            cursor: pointer;
+            user-select: none;
+            color:#66ccff;
+            padding: 16px 20px;
+            border: none;
+            opacity: 0.8;
+          }
+          .fa:hover {
+            color:#66ccff;
+          } 
         </style>
     <script>
         function openForm() {
@@ -208,21 +124,11 @@
         document.getElementById("cbutton").style.display = "none";
         document.getElementById("obutton").style.display = "block";
         } 
-        function myFunction(x) {
-              x.classList.toggle("fa-thumbs-down");
-              if(x.classList.length==3)
-              {
+        function myFunction1() {
                   socket.emit('text',{msg:"Liked the drawing!"})
-                  // $('#chat').val($('#chat').val() + "Liked the drawing!" + '\n');
-                  // $('#chat').scrollTop($('#chat')[0].scrollHeight);
-              }
-              else
-              {
-                socket.emit('text',{msg:"Unliked the drawing"})
-                // $('#chat').val($('#chat').val() + "Uniked the drawing" + '\n');
-                // $('#chat').scrollTop($('#chat')[0].scrollHeight);
-              }
-              
+        }
+        function myFunction2() {
+                  socket.emit('text',{msg:"Disliked the drawing."})
         }
         function foo()
         {
@@ -240,29 +146,56 @@
         setInterval(function(){foo()},1000);
     </script>
     </head>
-    <body>
-      <div class="w3-container w3-teal row">
-        <h1 style="text-align:center">Room: {{ room }} Role: {{role}}</h1></div>
-      <br><br><br><br>
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-8">
-          <img id="canvasimg" style="position:absolute;top:25%;" style="display:none; border-color: teal;border-style:bold"></div>
-          <div class="col-3">
-            <button  id="obutton"  onclick="openForm()">Chat</button>
-            <span class="chat-popup" id="myForm" style="display: none">
-                <h1 style="color: teal; text-align: center">MY GUESSES</h1>
-                <textarea id="chat"  rows="20" cols=56 style="color:teal" readonly></textarea>
-                <textarea id="text"  cols="56" placeholder="Enter your message here" style="color:teal" required></textarea>
-                
-                <button id="cbutton" onclick="closeForm()" style="display:none">Close</button>
-            </form>
-          </span>
-        <!-- <textarea id="chat" cols="80" rows="20"></textarea><br><br> -->
-        <!-- <input id="text" size="80" placeholder="Enter your message here"><br><br> -->
-        <button onclick="leave_room();" >Leave this room</button>
-          <i onclick="myFunction(this)" id="like" class="fa fa-thumbs-up" style="display:none"></i>
-          </div>
-          </div>
-    </body>
+<body>
+    <div class="w3-container w3-teal row">
+        <div class="col-2" style="text-align:center;">
+          <img src="/static/get_myavatar" class="avatar" >
+          <h3 >{{name}}</h3>
+        </div>
+        <div class = "col-8">
+          <h1 style="text-align:center;">PICTIONARY-APP</h1>
+          <h1 style="text-align:center;">Room ID:{{ room }} </h1>
+          <h1 style="text-align:center;"> Role: {{role}}</h1>
+          <!-- <h1 style="text-align:center;">Word: {{word}}</h1> -->
+        </div>
+        <div class="col-2"></div>
+        </div>
+  <br><br><br>
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-6" style="text-align:center;">
+      <img id="canvasimg">
+      <div style="text-align: center">
+        <button onclick="leave_room();" >Leave this room</button>	
+      </div>
+      
+    </div>
+    <div class="col-3">
+      <button  id="obutton"  onclick="openForm()">Chat</button>
+      <span class="chat-popup" id="myForm" style="display: none">
+        <h1 style="color: teal; text-align: center">MY GUESSES</h1>
+        <textarea id="chat"  rows="20" cols=56 style="color:teal" readonly></textarea>
+        <textarea id="text"  cols="56" placeholder="Enter your message here" style="color:teal" required></textarea>
+        
+        <span>
+          <div class="row">
+            <div class="col-10"></div>
+            <div class="col-1" >
+              <i onclick="myFunction1()" id="like" class="fa fa-thumbs-up" style="display:none"></i>
+            </div>
+            <div class="col-1">
+                <i onclick="myFunction2()" id="dlike" class="fa fa-thumbs-down" ></i>
+            </div>
+            <button id="cbutton" onclick="closeForm()" style="display:none">Close</button>
+        </div>
+        </span>
+      </span>
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+  
+  
+</body>
 </html>

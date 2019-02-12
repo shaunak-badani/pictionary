@@ -36,6 +36,7 @@ def chat():
     the session."""
     name = session.get('name', '')
     room = session.get('room', '')
+    img  = session.get('avatar_id','')
     w = session.get('word','')
     if name == '' or room == '':
         return redirect(url_for('.index'))
@@ -74,6 +75,12 @@ def savecoord():
 @main.route('/static/get_avatar', methods=['GET', 'POST'])
 def get_avatar():
     img_name = random.choice(list(os.listdir('./app/static/images/avatar')))
+    session['avatar_id'] = img_name
+    return send_file('./static/images/avatar/'+img_name)
+
+@main.route('/static/get_myavatar', methods=['GET', 'POST'])
+def get_myavatar():
+    img_name = session.get('avatar_id','')
     return send_file('./static/images/avatar/'+img_name)
 
 @main.route('/static/get_backg', methods=['GET', 'POST'])
