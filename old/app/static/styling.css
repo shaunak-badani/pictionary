@@ -149,7 +149,7 @@ img.avatar {
 	width: 30%;
 	height: 621px;
 	background-color: rgba(0,0,0,0.1);
-
+	overflow: auto;
 }
 
 #chat {
@@ -157,6 +157,7 @@ img.avatar {
 	font-size: 1.2rem;
 	text-align: left;
 	padding: 0 1vw;
+	overflow: auto;
 }
 
 .leave {
@@ -217,6 +218,7 @@ img.avatar {
 	background-color: peachpuff;
 	font-size: 1.2rem;
 	font-family: 'Merriweather', sans-serif;
+	overflow: auto;
   }
 
   .guesses {
