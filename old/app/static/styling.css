@@ -77,7 +77,9 @@ img.avatar {
 	text-transform: capitalize;
 }
 
-
+.word {
+	font-weight: 350;
+}
 
 .clock {
 	display : inline-block;
@@ -121,6 +123,7 @@ img.avatar {
 .tools > img {
 	display: block;
 	padding: 1.5vh;
+	width: 100%;
 }
 
 .tools > img:last-child {
@@ -150,7 +153,7 @@ img.avatar {
 }
 
 #chat {
-	font-family: 'EB Garamond', sans-serif;
+	font-family: 'Merriweather', sans-serif;
 	font-size: 1.2rem;
 	text-align: left;
 	padding: 0 1vw;
@@ -212,9 +215,8 @@ img.avatar {
 	height: 600px;
 	width: 100%;
 	background-color: peachpuff;
-	font-family: 'EB Garamond', sans-serif;
 	font-size: 1.2rem;
-	letter-spacing: 1.1px;
+	font-family: 'Merriweather', sans-serif;
   }
 
   .guesses {
@@ -230,10 +232,8 @@ img.avatar {
 		border: 2px solid #ccc;
 		width: 100%;
 		padding: 2vh;
-		font-family: 'EB Garamond', sans-serif;
 		font-weight: 300;
 		font-size: 1.2rem;
-		letter-spacing: 1.5px;
   }
 
   #text:focus {
@@ -318,4 +318,8 @@ img.avatar {
   }
   .fa:hover {
 		color:#66ccff;
-  } 
+	}
+	
+	.c-msg {
+		padding: 0.7vh 1vw;
+	}

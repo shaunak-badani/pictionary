@@ -3,7 +3,9 @@
         <link href="static/styling.css" rel="stylesheet" >
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 		    <link rel="icon" href="../static/images/pencil.ico" type="image/x-icon"/>
-		    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:300,400" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:300,400|Merriweather" rel="stylesheet">
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
         <style>
           body {font-family: Arial, Helvetica, sans-serif;}
           *{
@@ -59,11 +61,7 @@
           }
 
           </style>
-        <title>Pictionary-Chat: {{ room }}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
-        <script type="text/javascript" src="static/timer.js"></script>
-    		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <title>Pictionary-Chat: {{ room }}</title>        
         <script type="text/javascript" charset="utf-8">
             var socket;
             $(document).ready(function(){
@@ -76,11 +74,11 @@
 
                 socket.on('status', function(data) {
                   var colour = colors[Math.floor(Math.random()*colors.length)];
-                  $('#chat-view').append(`<p style="color:${colour}"> ${sanitizeHTML(data.msg)}</p>`);
+                  $('#chat-view').append(`<p class="c-msg" style="color:${colour}"> ${sanitizeHTML(data.msg)}</p>`);
                 });
                 socket.on('message', function(data) {
                   var colour = colors[Math.floor(Math.random()*colors.length)];
-                  $('#chat-view').append(`<p style="color:${colour}"> ${sanitizeHTML(data.msg)} </p>`);
+                  $('#chat-view').append(`<p class="c-msg" style="color:${colour}"> ${sanitizeHTML(data.msg)} </p>`);
                 });
                 $('#text').keypress(function(e) {
                     var code = e.keyCode || e.which;
@@ -172,10 +170,6 @@
           <h1 class = "role"> Role : <span>{{role}}</span></h1>
         </div>
         <div class="clock">
-          <div class="timer">
-            <span class="mins"></span> :
-            <span class="secs"></span>
-          </div>
         </div>
       </div>
     </div>
@@ -201,10 +195,10 @@
           <h1 class="guesses">My Guesses</h1>
           <div id="chat-view"></div>
           <input id="text" cols="56" placeholder="Enter your message here" style="color:teal" required>
-          <div class="thumbs">
+          <!-- <div class="thumbs">
             <i onclick="myFunction1()" id="like" class="far fa-thumbs-up"></i>
             <i onclick="myFunction2()" id="dlike" class="far fa-thumbs-down"></i>
-          </div>
+          </div> -->
         </div>
         <button id="cbutton" onclick="closeForm()" >
             <i class="far fa-md fa-times-circle" style="color:red; font-size: 2rem;"></i>

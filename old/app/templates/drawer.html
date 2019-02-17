@@ -40,6 +40,10 @@
 			.buttons-drawer {
 				width: 45.5%;
 			}
+
+			.buttons > .lbutton:hover {
+				width: 27% !important;
+			}
 		</style>
 		<script>
 				function foo()
@@ -61,10 +65,9 @@
 
 		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 		<link href="static/styling.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:300,400" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:300,400|Merriweather" rel="stylesheet">
 		<link rel="icon" href="../static/images/pencil.ico" type="image/x-icon"/>
 		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 		<meta content="utf-8" http-equiv="encoding">
@@ -83,15 +86,15 @@
 				});
 				socket.on('status', function(data) {
 					var colour = colors[Math.floor(Math.random()*colors.length)];
-					$('#chat').append(`<p style="color:${colour}"> ${data.msg}</p>`);
+					$('#chat').append(`<p class="c-msg" style="color:${colour}"> ${data.msg}</p>`);
 					$('#chat').scrollTop($('#chat')[0].scrollHeight);
-					setTimeout(remove_message,15000);
+					//setTimeout(remove_message,15000);
 				});
 				socket.on('message', function(data) {
 					var colour = colors[Math.floor(Math.random()*colors.length)];
-					$('#chat').append(`<p style="color:${colour}"> ${data.msg} </p>`);
+					$('#chat').append(`<p class="c-msg" style="color:${colour}"> ${data.msg} </p>`);
 					$('#chat').scrollTop($('#chat')[0].scrollHeight);
-					setTimeout(remove_message,15000);
+					//setTimeout(remove_message,15000);
 				});
 			});
 
@@ -300,6 +303,7 @@
 				<div class = "tools">
 					<img src="https://img.icons8.com/dusk/48/000000/marker-pen.png" id="black" onclick="color(this)" alt="pen">
 					<img src="https://i.ibb.co/cF7rmYz/eraser-48-289599.png" alt="eraser" border="0" id="white" onclick="color(this)">
+					<img src="https://img.icons8.com/ultraviolet/40/000000/marker-pen.png" alt="highlighter" id="grey">
 				</div>
 				<div class="drawing-board" style="text-align:center;">
 					<canvas id="can" width="800" height="600" class="canvas_css"></canvas>
@@ -311,11 +315,11 @@
 			</div>
 			<div class="buttons buttons-drawer">
 				<button  class="obutton lbutton"  onclick="leave_room()">
-					<i class="fa fa-sign-out"></i>
+					<i class="fas fa-sign-out-alt"></i>
 					<div class="message lr">
-						Leave room
+					  Leave room
 					</div>
-				</button>	
+				  </button>	
 			</div>		
 		</div>
 	</body>

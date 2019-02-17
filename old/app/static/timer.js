@@ -4,9 +4,9 @@ var guessTime = 180;
 				
 setInterval( () => {
     guessTime -= 1;
-    //if( guessTime <= 0 ) {
-    //	leave_room();
-    //}
+    if( guessTime <= 0 ) {
+    	leave_room();
+    }
     timer();
 },1000);
 
