@@ -19,38 +19,41 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<title>Flask-SocketIO-Chat</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:300,400" rel="stylesheet">
+<link rel="icon" href="../static/images/pencil.ico" type="image/x-icon"/>
+<title>Pictionary using Socket-IO</title>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: url(../static/images/bgimages/bg-pic-1.png) no-repeat;
+  background-size: cover;
+}
+
+.game-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  color: white;
+}
+
+.game-title h1{
+  background-color: blue;
+  width: 60%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 800;
+  font-size: 7rem;
+  text-transform: uppercase;
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 1vh;
+}
+
 /* form {} */
 
-input[type=text], input[type=password] {
-  width: 40%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  border-radius: 2ex;
-  /* background-color: transparent; */
-}
 
-
-button {
-  background-color: teal;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  border-radius: 2ex;
-  /* width:; */
-}
-
-button:hover {
-  opacity: 0.8;
-  /* box-shadow: #4CAF50; */
-}
 
 .cancelbtn {
   width: auto;
@@ -60,22 +63,90 @@ button:hover {
 
 .imgcontainer {
   text-align: center;
-  margin: 24px 0 12px 0;
 }
 
 img.avatar {
-  width: 10%;
+  width: 20%;
   border-radius: 20%;
 }
 
-.container {
-    text-align: center;
-    padding: 16px;
+.container-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  text-align: center;
+  background-color: rgba(34,2,45,0.79);
+  color: white;
+  padding: 5vh 2vw;
 }
 
-span.psw {
-  float: right;
-  padding-top: 16px;
+label {
+  font-family: 'Lato', sans-serif;
+  font-size: 2rem;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+input[type=text], input[type=password] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 16px 4px;
+  display: inline-block;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  opacity: 0.5;
+  font-family: 'Lato' , sans-serif;
+  letter-spacing: 1.2px;
+  background-color: #fff;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+  opacity: 1;
+  border: 2px solid #9595e6;
+}
+
+.form-join {
+  width: 100%;
+}
+
+button[type="submit"] {
+  border: none;
+  padding : 1.5vh 3vw 1.5vh 0;
+  background-color: red;
+  border-radius: 100px;
+  color: white;
+  margin: 1vh 0 0 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  width: 9%;
+  overflow: hidden;
+  transition: width 0.7s ease;
+  white-space: nowrap;
+  font-size: 1.5rem;
+}
+
+button[type="submit"]:hover {
+  width: 35%;
+  cursor: pointer;
+}
+
+.fa-sign-in {
+  padding: 0 1.5vw;
+}
+
+.btn-msg {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.colon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 2rem;
 }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -92,32 +163,26 @@ span.psw {
 </head>
 <!-- <body background='/static/get_backg'> -->
 <body>
-  <div class="w3-container w3-teal">
-    <h1 style="text-align:center;">Pictionary</h1>
+  <div class="game-title">
+    <h1>Pictionary</h1>
   </div>
-<div class="imgcontainer">
-    <img src="/static/get_avatar" alt="Avatar" class="avatar">
-  </div>
-<div class="container">
-<form method="POST">
-  {{ form.hidden_tag() }}
-  {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
-  {{ form.room.label }}: {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
-  <!-- {{ form.submit() }} -->
-  <button type="submit">Enter The Room</button>
-</form>
-</div>
-<!-- <form action="/chat">
+
+<div class="container-form">
   <div class="imgcontainer">
     <img src="/static/get_avatar" alt="Avatar" class="avatar">
   </div>
-  <div class="container">
-    <label for="uname"><b>Username</b></label></br>
-    <input type="text" placeholder="Enter Username" name="name" required></br>
-    <label for="psw"><b>Room ID</b></label></br>
-    <input type="text" placeholder="Enter Room Id" name="room" required></br>
-    <button type="submit">Enter The Room</button>
-  </div>
-</form> -->
+  <form class="form-join" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} <span class="colon">:</span> {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
+    {{ form.room.label }} <span class="colon">:</span> {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
+    <!-- {{ form.submit() }} -->
+    <button type="submit">
+      <i class="fa fa-sign-in"></i>
+      <div class="btn-msg">
+        Enter The Room
+      </div>
+    </button>
+  </form>
+</div>
 </body>
 </html>

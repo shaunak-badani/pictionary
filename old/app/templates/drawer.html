@@ -5,42 +5,16 @@
 			* {
 				box-sizing: border-box;
 			}
-			img.avatar {
-				width: 50%;
-				height: 15%;
-				border-radius: 20%;
-			}
-			button {
-				background-color: teal;
-				color: white;
-				padding: 14px 20px;
-				margin: 8px 0;
-				border: none;
-				cursor: pointer;
-				border-radius: 2ex;
-			}
 
-			button:hover {
-				opacity: 0.8;
+			@font-face{
+				font-family:'digital-clock-font';
+				src: url('../static/fonts/digital-7.ttf');
 			}
-
-			.col-1 {width: 8.33%;}
-			.col-2 {width: 16.66%;}
-			.col-3 {width: 25%;}
-			.col-4 {width: 33.33%;}
-			.col-5 {width: 41.66%;}
-			.col-6 {width: 50%;}
-			.col-7 {width: 58.33%;}
-			.col-8 {width: 66.66%;}
-			.col-9 {width: 75%;}
-			.col-10 {width: 83.33%;}
-			.col-11 {width: 91.66%;}
-			.col-12 {width: 100%;}
-			[class*="col-"] {
+			/*[class*="col-"] {
 				float: left;
 				padding: 15px;
 				border-radius: 15px;
-				}
+				}*/
 			.row::after {
 				content: "";
 				clear: both;
@@ -55,6 +29,16 @@
 			}
 			.canvas_css:hover{
 				cursor:crosshair;
+			}
+
+			.word {
+				font-family: 'EB Garamond', sans-serif;
+				text-align: center;
+				font-size: 4rem;
+			}
+
+			.buttons-drawer {
+				width: 45.5%;
 			}
 		</style>
 		<script>
@@ -74,15 +58,23 @@
 						},
 						});                
 				}
+
 		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link href="static/styling.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:300,400" rel="stylesheet">
+		<link rel="icon" href="../static/images/pencil.ico" type="image/x-icon"/>
 		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 		<meta content="utf-8" http-equiv="encoding">
 		<title>Pictionary-Chat: {{ room }}</title>
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="static/timer.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
+			colors = ['#d752ef', '#da1602', '#6f6a23' , '#3f522e' , '#6d0622', '#303269'];
+
 			var socket;
 			$(document).ready(function(){
 				socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
@@ -90,12 +82,14 @@
 					socket.emit('joined', {});
 				});
 				socket.on('status', function(data) {
-					$('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+					var colour = colors[Math.floor(Math.random()*colors.length)];
+					$('#chat').append(`<p style="color:${colour}"> ${data.msg}</p>`);
 					$('#chat').scrollTop($('#chat')[0].scrollHeight);
 					setTimeout(remove_message,15000);
 				});
 				socket.on('message', function(data) {
-					$('#chat').val($('#chat').val() + data.msg + '\n');
+					var colour = colors[Math.floor(Math.random()*colors.length)];
+					$('#chat').append(`<p style="color:${colour}"> ${data.msg} </p>`);
 					$('#chat').scrollTop($('#chat')[0].scrollHeight);
 					setTimeout(remove_message,15000);
 				});
@@ -273,15 +267,8 @@
 		function remove_message()
 		{
 			var old_message = String(document.getElementById("chat").value);
-			old_message = old_message.split('\n');
-			old_message.shift();
-			old_message.pop();
-			var i;
-			var new_message = ''
-			for (i = 0; i < old_message.length; i++) {
-			new_message += old_message[i] + "\n";
-			}
-			document.getElementById("chat").value = new_message;
+			var first_message = document.getElementById("chat").firstChild;
+			document.getElementById("chat").removeChild(first_message);
 		}
 		
 		</script>
@@ -290,51 +277,48 @@
 		<script>
 		setInterval(function(){foo()},1000);
 		</script>
-		<div class="w3-container w3-teal row">
-		<div class="col-2" style="text-align:center;">
-			<img src="/static/get_myavatar" class="avatar" >
-			<h3 >{{name}}</h3>
-		</div>
-		<div class = "col-8">
-				<h1 style="text-align:center;">PICTIONARY-APP</h1>
-			<h1 style="text-align:center;">Room ID:{{ room }} Role: {{role}}</h1>
-			<h1 style="text-align:center;">Word: {{word}}</h1>
-		</div>
-		<div class="col-2"></div>
-		</div>
-		<br><br><br><br>
-		<div class="row">
-			<div class = "col-2" style="text-align:center;">
-				<br><br><br>
-				<!-- <div style="position:absolute;top:20%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div> -->
-				<!-- <div style="position:absolute;top:20%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div> -->
-				<!-- <div style="position:absolute;top:20%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div> -->
-				<!-- <div style="position:absolute;top:22%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div> -->
-				<!-- <div style="position:absolute;top:22%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div> --> 
-				<!-- <div style="width:15px;height:15px;background:black;" id="black" onclick="color(this)"></div>
-				-->
-				<img src="https://img.icons8.com/dusk/48/000000/marker-pen.png" id="black" onclick="color(this)" alt="pen">
-				<br><br>
-				<!-- <div >Eraser</div> -->
-				<!-- <div style="width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div> -->
-				<img src="https://i.ibb.co/cF7rmYz/eraser-48-289599.png" alt="eraser" border="0" id="white" onclick="color(this)">
+		<div class="header row">
+			<div class="avatar-space">
+				<img src="/static/get_myavatar" class="avatar" >
+				<h3>{{name}}</h3>
 			</div>
-			<div class="col-6" style="text-align:center;">
-				<canvas id="can" width="800" height="600" class="canvas_css"></canvas>
-				<br>
-				<div style="padding-top: 10px;">
-						<button onclick="leave_room();" >Leave this room</button>
+			<div class = "game-header">
+				<div><h1 class = "game">Pictionary</h1></div>
+				<h1 class = "room-id">Room ID : {{ room }} </h1>
+				<h1 class = "role"> Role : <span>{{role}}</span></h1>
+				<h1 class = "word">Word to be drawn : {{word}}</h1>
+			</div>
+			<div class="clock">
+				<div class="timer">
+					<span class="mins"></span> :
+					<span class="secs"></span>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="board">
+				<div class = "tools">
+					<img src="https://img.icons8.com/dusk/48/000000/marker-pen.png" id="black" onclick="color(this)" alt="pen">
+					<img src="https://i.ibb.co/cF7rmYz/eraser-48-289599.png" alt="eraser" border="0" id="white" onclick="color(this)">
+				</div>
+				<div class="drawing-board" style="text-align:center;">
+					<canvas id="can" width="800" height="600" class="canvas_css"></canvas>
+					
+				</div>
+				<div class="chat-area">
+					<div id="chat"></div>
+				</div>
+			</div>
+			<div class="buttons buttons-drawer">
+				<button  class="obutton lbutton"  onclick="leave_room()">
+					<i class="fa fa-sign-out"></i>
+					<div class="message lr">
+						Leave room
 					</div>
-			</div>
-			<div class="col-4">
-				<textarea id="chat" cols="56" rows="28" style="color:teal;" readonly></textarea>
-			</div>
+				</button>	
+			</div>		
 		</div>
-		<br><br><br>
-			<!-- </div> -->
-			<!-- <img id="canvasimg" style="position:absolute;top:15%;left:52%;" style="display:none;"> -->
-			<!-- <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:62%;left:22%;"> -->
-		</body>
+	</body>
 </html>
 
 

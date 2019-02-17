@@ -1,0 +1,321 @@
+* {
+	margin: 0;
+	padding: 0;
+    box-sizing: border-box;
+  }
+
+/* styles that add flavour */
+
+.header {
+	background-color: #4e4884;
+	color: white;
+}
+
+.avatar-space {
+	padding: 1vh 1vw;
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;	
+	text-align: center;
+}
+
+.avatar-space > h3 {
+	background-color: red;
+	width: 50%;
+	margin: 2vh auto;
+	font-size: 2rem;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+}
+
+img.avatar {
+	max-width: 100%;
+	height: auto;
+	border-radius: 50%;
+}
+
+.game-header {
+	display: inline-block;
+	width: 50%;
+}
+.game-header > div {
+	text-align: center;
+	margin: 2vh 0;
+}
+
+.game {
+	background-color: #6a6c8a;
+	display: inline-block;
+	letter-spacing: 1vh;
+	width: 70%;
+	text-transform: uppercase; 	
+	border-radius: 100px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 800;
+	font-size: 4rem;
+	text-align: center;	
+}
+
+
+.room-id , .role {
+	background-color: #202703;
+	display: inline-block;
+	letter-spacing: 1.5px;
+	width: 50%;
+	padding: 1vh 0;
+	margin: 1vh 0;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-weight: 350;
+}
+
+.role {
+	width: 49%;
+}
+
+.role > span {
+	text-transform: capitalize;
+}
+
+
+
+.clock {
+	display : inline-block;
+	width : 24%;
+	vertical-align: top;
+	height: 40%;
+	text-align: center;
+}
+
+.timer {
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	margin: 25% auto;
+	font-family: 'digital-clock-font';
+	font-size: 7rem;
+	height: 40%;
+	border-radius: 2vh;
+	box-shadow: 5px 5px 10px #666;
+  }
+
+/* main section */
+
+.section {
+	background-color: #fcfff2;
+}
+
+.board {
+	width: 90%;
+	margin: 5vh auto;
+}
+.tools {
+	display: inline-block;
+	border : 2px solid green;
+	border-radius: 400px;
+	vertical-align: top;
+}
+
+.tools > img {
+	display: block;
+	padding: 1.5vh;
+}
+
+.tools > img:last-child {
+	border-bottom: none;
+}
+
+.tools > img:hover {
+	transform: scale(1.2);
+}
+
+.drawing-board {
+	display: inline-block;
+	vertical-align: top;
+	width: 800px;
+}
+
+.mins, .secs {
+	letter-spacing: 2px;
+}
+
+.chat-area {
+	display: inline-block;
+	width: 30%;
+	height: 621px;
+	background-color: rgba(0,0,0,0.1);
+
+}
+
+#chat {
+	font-family: 'EB Garamond', sans-serif;
+	font-size: 1.2rem;
+	text-align: left;
+	padding: 0 1vw;
+}
+
+.leave {
+	text-align: center;
+}
+
+.leave > button {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 1.4rem;
+	cursor: pointer;
+	border-radius : 50px;
+	width: 15%;
+	background-color: red;
+	border: none;
+	padding: 1vh 0;
+	color: white;
+	transition: transform 0.1s;
+}
+
+.leave > button:hover{
+	transform: scale(1.1);
+}
+
+::-webkit-scrollbar {
+	width: 20px;
+}
+
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+}
+
+::-webkit-scrollbar-thumb {
+	background: #670964; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #b713b2; 
+}
+
+/* viewer css */
+
+.board-view {
+	display: inline-block;
+	vertical-align: top;
+	margin: 10vh 0 3vh 10vw;
+  }
+
+  .chat-popup {
+	width: 22%;
+	display: inline-block;
+	vertical-align: top;
+  }
+
+  #chat-view {
+	height: 600px;
+	width: 100%;
+	background-color: peachpuff;
+	font-family: 'EB Garamond', sans-serif;
+	font-size: 1.2rem;
+	letter-spacing: 1.1px;
+  }
+
+  .guesses {
+	text-align: center;
+	font-family: 'Lato';
+	font-weight: 300;
+	padding: 2vh 0;
+	text-transform: capitalize;
+	background-color: #ccc;
+  }
+
+  #text {
+		border: 2px solid #ccc;
+		width: 100%;
+		padding: 2vh;
+		font-family: 'EB Garamond', sans-serif;
+		font-weight: 300;
+		font-size: 1.2rem;
+		letter-spacing: 1.5px;
+  }
+
+  #text:focus {
+		border: 2px solid blue;
+  }
+
+  .thumbs {
+		text-align: center;
+  }
+
+  #like , #dlike{
+		transition: transform 0.1s linear;
+  }
+
+  #like:hover , #dlike:hover{
+		transform : scale(1.2);
+  }
+
+  button {
+		border: none;
+		background: none;
+  }
+
+  /*buttons div*/
+
+  .buttons {
+		height: 18.5%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+  }
+
+  .obutton{
+		color: white;
+		background-color: red;
+		padding: 1vh 2vw 1vh 1vw;
+		margin: 0 2vw;
+		display: flex;
+		cursor: pointer;
+		border-radius: 100px;
+		font-family: 'Lato', sans-serif;
+		font-weight: 500;
+		font-size: 1.4rem;
+		width : 7%;
+		transition: width 0.3s linear;
+		overflow: hidden;
+  }
+
+  .lr {
+		width: 100%;
+		white-space: nowrap;
+  }
+
+  .obutton:hover {
+		width: 17%;
+  }
+
+  .lbutton:hover{
+		width: 25% !important;
+  }
+
+  .fa-comment {
+		padding: 1vh 1vw 1vh 0.1vw !important;
+		cursor: inherit;
+  }
+
+  .fa-sign-out-alt {
+		padding: 1vh 1vw 1vh 0.1vw !important;
+  }
+
+  .message {
+		width: 20%;
+		margin: auto 0;
+  }
+
+  .far, .fas {
+		cursor: pointer;
+		user-select: none;
+		color:#66ccff;
+		border: none;
+		opacity: 0.8;
+  }
+  .fa:hover {
+		color:#66ccff;
+  } 
