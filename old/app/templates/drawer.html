@@ -273,6 +273,38 @@
 			var first_message = document.getElementById("chat").firstChild;
 			document.getElementById("chat").removeChild(first_message);
 		}
+
+		window.onclick = function(event) {
+			var modal = document.getElementById('modal');
+			if(event.target == modal) {
+				modal.style.display = 'none';
+				start_timer();
+			}
+		}
+
+		function show_modal() { 
+			var md2 = document.getElementById('modal2');
+			md2.style.display = 'block';
+		}
+
+		function playViewer() {
+			var butts = document.getElementsByClassName('butts')[0];
+			var msg_exit = document.getElementsByClassName('msg-exit')[0];
+
+			console.log(butts);
+			console.log(msg_exit.childNodes);
+			msg_exit.childNodes[1].style.fontSize = '2rem';
+			msg_exit.childNodes[1].style.padding = '2vh 3vw';
+			msg_exit.childNodes[1].innerHTML = `
+				Instructions to play as viewer : <br />
+				<ul>
+					<li>Leave the room</li>
+					<li>Join the same room, using the current room ID</li>
+				</ul>
+			`;
+			document.getElementsByClassName('butt-2')[0].style.display = 'none';
+			document.getElementsByClassName('butt-3')[0].style.display = 'none';
+		}
 		
 		</script>
 		</head>
@@ -280,6 +312,33 @@
 		<script>
 		setInterval(function(){foo()},1000);
 		</script>
+	<div id="modal">
+		<div class="msg-m">
+			Welcome!
+		</div>
+	</div>
+	<div id="modal2" style="display: none;">
+		<div class="msg-m msg-exit">
+			<div class="tm-out">
+				Oops! Your session timed out. 
+				What would you like to do ?
+			</div>
+			<div class="butts">
+				<button class="butt butt-1" onclick="leave_room();">
+					<i class="fa fa-sign-out-alt" ></i>
+					Leave Room
+				</button>
+				<button class="butt butt-2" onclick="location.reload();">
+						<i class="fas fa-pen" ></i>
+						Play as drawer
+				</button>
+				<button class="butt butt-3" onclick="playViewer();">
+						<i class="far fa-eye"></i>
+						Play as viewer
+				</button>
+			</div>
+		</div>
+	</div>
 		<div class="header row">
 			<div class="avatar-space">
 				<img src="/static/get_myavatar" class="avatar" >
@@ -302,8 +361,11 @@
 			<div class="board">
 				<div class = "tools">
 					<img src="https://img.icons8.com/dusk/48/000000/marker-pen.png" id="black" onclick="color(this)" alt="pen">
+					<span class="info-tip info-p">Pen</span>
 					<img src="https://i.ibb.co/cF7rmYz/eraser-48-289599.png" alt="eraser" border="0" id="white" onclick="color(this)">
+					<span class="info-tip info-e">Eraser</span>
 					<img src="https://img.icons8.com/ultraviolet/40/000000/marker-pen.png" alt="highlighter" id="grey">
+					<span class="info-tip info-h">Highlighter</span>
 				</div>
 				<div class="drawing-board" style="text-align:center;">
 					<canvas id="can" width="800" height="600" class="canvas_css"></canvas>

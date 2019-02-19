@@ -118,12 +118,41 @@ img.avatar {
 	border : 2px solid green;
 	border-radius: 400px;
 	vertical-align: top;
+	position: relative;
 }
 
 .tools > img {
 	display: block;
 	padding: 1.5vh;
 	width: 100%;
+	cursor: pointer;
+}
+
+img:hover + .info-tip {
+	display: inline;
+}
+
+.info-tip {
+	display: none;
+	position: absolute;
+	top: 7%;
+	right: -80%;
+	background-color: black;
+	color: white;
+	padding: 1vh 0.8vw;
+	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	border-radius: 50px;	
+}
+
+.info-e {
+	top: 40%;
+	right: -110%;	
+}
+
+.info-h {
+	top: 75%;
+	right: -165%;	
 }
 
 .tools > img:last-child {
@@ -324,4 +353,80 @@ img.avatar {
 	
 	.c-msg {
 		padding: 0.7vh 1vw;
+	}
+
+
+	/* Modal */
+
+	#modal, #modal2 {
+		height: 100%;
+		width: 100%;
+		z-index: 500;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.5);
+		position: fixed;
+		left: 0;
+		top: 0;
+		overflow: auto;
+	}
+	.msg-m{
+		height: 50%;
+		width: 50%;
+		margin: 5vh 2vw;
+		background-color: #470923;
+		position: absolute;
+		color:white;
+		border-radius: 20px;
+		top: 40%;
+		left: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: translate(-50%, -50%);
+		font-family: 'Lato', sans-serif;
+		font-weight: 350;
+		font-size: 3rem;
+		box-sizing: border-box;
+		animation: moveFromTop 0.9s ease-in-out;
+	}
+
+	.msg-exit {
+		padding: 5vh 2vw;
+		display: block;
+	}
+
+	.butts {
+		display: flex;
+		justify-content: space-evenly;
+		margin-top: 5vh;
+		padding: 5vh 2vw;
+	}
+
+	.butt {
+		background-color: yellow;
+		border-radius: 50px;
+		padding: 1vh 1vw;
+		white-space: nowrap;
+		width: 7%;
+		overflow: hidden;
+		cursor: pointer;
+		transition: width 0.4s ease-in;
+	}
+
+	.butt:hover {
+		width: 25%;
+	}
+
+	.butt i {
+		padding-right: 3vh;
+		color: black;
+	}
+
+	@keyframes moveFromTop {
+		0% {
+			top: 30%;
+		}
+		100% {
+			top: 40%;
+		}
 	}
