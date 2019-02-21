@@ -2,8 +2,10 @@
 
 var guessTime = 180;
 
+var tm;
+
 const start_timer = () => {
-    var tm = setInterval( () => {
+    tm = setInterval( () => {
         guessTime -= 1;
         if( guessTime <= 0 ) {
             show_modal();
@@ -12,6 +14,10 @@ const start_timer = () => {
         timer();
     },1000);
 
+}
+
+const clearTimer = () => {
+    clearInterval(tm);
 }
 				
 

@@ -35,6 +35,18 @@ def text(message):
     write_to(log)
     # print("\n\n\n\n",temp_session,"\n\n\n\n")
 
+@socketio.on('correctGuess', namespace='/chat')
+def text(message):
+    """When guess is correct"""
+    room = session.get('room')
+    word = session.get('word')
+    to_display_message = 'The correct word has been guessed! The word was ' + word + '.'
+    emit('correct_guess', {'msg': to_display_message}, room=room)
+    temp_session = session
+    temp_session['message'] = to_display_message
+    log.append(dict(temp_session))
+    write_to(log)
+
 @socketio.on('left', namespace='/chat')
 def left(message):
     """Sent by clients when they leave a room.

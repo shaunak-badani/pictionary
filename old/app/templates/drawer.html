@@ -96,6 +96,12 @@
 					$('#chat').scrollTop($('#chat')[0].scrollHeight);
 					//setTimeout(remove_message,15000);
 				});
+
+				socket.on('correct_guess', function(data) {
+					document.getElementsByClassName('tm-out')[0].innerHTML = data.msg;
+					document.getElementById('modal2').style.display = 'block';
+					clearTimer();
+				});
 			});
 
 			function leave_room() {
@@ -288,11 +294,7 @@
 		}
 
 		function correct_guess() {
-			var word = document.getElementById('g-word').innerHTML;
-			socket.emit('text', {msg: ' The correct word has been guessed! The word was ' + word + '.'});
-			document.getElementsByClassName('tm-out')[0].innerHTML = 'Woohoo ! You successfully made them guess the word! What next ?';
-			document.getElementById('modal2').style.display = 'block';
-			
+			socket.emit('correctGuess',{});
 		}
 
 		function playViewer() {
