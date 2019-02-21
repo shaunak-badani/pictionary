@@ -181,6 +181,46 @@ img:hover + .info-tip {
 	overflow: auto;
 }
 
+.tick-b {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+	width: 100%;
+	margin: 2vh 0;
+}
+
+.tick-b i{
+	color: green;
+	font-size: 2rem;
+	cursor: pointer;
+	position: relative;
+	transition: transform 0.2s ease-in-out;
+}
+
+.tick-b i:hover {
+	transform: scale(1.2);
+}
+
+.tick-b > i:hover + .guess {
+	display: inline;
+}
+
+.guess {
+	border-radius: 7px;
+	background-color: rgba(0,0,0,0.8);
+	font-family: 'Lato';
+	padding: 1vh 1vw;
+	margin: 0 1vw;
+	color: white;
+	display: none;
+	position: absolute;
+	left: 51%;
+}
+
+
+
+
 #chat {
 	font-family: 'Merriweather', sans-serif;
 	font-size: 1.2rem;

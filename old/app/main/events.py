@@ -50,4 +50,5 @@ def left(message):
     temp_session['message'] = to_display_message
     log.append(dict(temp_session))
     write_to(log)
+
     
