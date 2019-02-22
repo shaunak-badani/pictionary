@@ -109,6 +109,7 @@
           *{box-sizing : border-box;}
         </style>
     <script>
+
         function openForm() {
             document.getElementById("myForm").style.display = "inline-block";
             document.getElementById("cbutton").style.display = "inline-block";
@@ -131,6 +132,23 @@
         }
         function myFunction2() {
             socket.emit('text',{msg:"Disliked the drawing."})
+        }
+        
+        function viewer_leave() {
+          var butts = document.getElementsByClassName('butts')[0];
+          var msg_exit = document.getElementsByClassName('msg-exit')[0];
+    
+          msg_exit.childNodes[1].style.fontSize = '2rem';
+          msg_exit.childNodes[1].style.padding = '2vh 3vw';
+          msg_exit.childNodes[1].innerHTML = `
+            Instructions to leave the room : <br />
+            <ul>
+              <li>Reload the page, and leave the room as whichever role is assigned to you.</li>
+            </ul>
+          `;
+          document.getElementsByClassName('butt-1')[0].style.display = 'none';
+          document.getElementsByClassName('butt-2')[0].style.display = 'none';
+          document.getElementsByClassName('butt-3')[0].style.display = 'inline-block';
         }
 
         
@@ -168,10 +186,18 @@
 				What would you like to do ?
 			</div>
 			<div class="butts">
-				<button class="butt butt-1" onclick="leave_room();">
+				<button class="butt butt-1" onclick="viewer_leave();">
 					<i class="fa fa-sign-out-alt" ></i>
 					Leave Room
-				</button>
+        </button>
+        <button class="butt butt-2" onclick="location.reload();">
+          <i class="fas fa-redo"></i>
+					Stay
+        </button>
+        <button class="butt butt-3" onclick="location.reload();" style="display: none">
+            <i class="fas fa-redo"></i>
+            Reload
+          </button>
 			</div>
 		</div>
 	</div>
