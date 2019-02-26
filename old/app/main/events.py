@@ -41,7 +41,7 @@ def text(message):
     room = session.get('room')
     word = session.get('word')
     to_display_message = 'The correct word has been guessed! The word was ' + word + '.'
-    emit('correct_guess', {'msg': to_display_message}, room=room)
+    emit('correct_guess', {'msg': to_display_message, 'time' : message['time'] }, room=room)
     temp_session = session
     temp_session['message'] = to_display_message
     log.append(dict(temp_session))

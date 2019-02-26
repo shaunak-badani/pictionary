@@ -81,7 +81,12 @@
                   $('#chat-view').append(`<p class="c-msg" style="color:${colour}"> ${sanitizeHTML(data.msg)} </p>`);
                 });
                 socket.on('correct_guess', function(data) {
-					        document.getElementsByClassName('tm-out')[0].innerHTML = data.msg;
+                  document.getElementsByClassName('tm-out')[0].innerHTML = data.msg + `
+                  <br />
+                    <p>Your score is <span  style="color:#aaa">${Math.floor(data.time / 60)*100 + data.time % 60}</span> </p>
+                  `;  
+                  console.log({ data });
+                  console.log("type: ",typeof(data.time));
                   document.getElementById('modal2').style.display = 'block';
                 });
 

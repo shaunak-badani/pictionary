@@ -294,7 +294,7 @@
 		}
 
 		function correct_guess() {
-			socket.emit('correctGuess',{});
+			socket.emit('correctGuess', { 'time' : guessTime });
 		}
 
 		function playViewer() {
